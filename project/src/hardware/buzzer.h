@@ -5,7 +5,7 @@
 
 #define BUZZER_PIN 26
 
-void setupBuzzer();
+void initBuzzer();
 void playTone(int frequency, int duration);
 void playTone(int frequency);
 void stopTone();

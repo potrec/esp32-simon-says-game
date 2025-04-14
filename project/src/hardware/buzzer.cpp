@@ -1,6 +1,6 @@
 #include "buzzer.h"
 
-void setupBuzzer()
+void initBuzzer()
 {
     pinMode(BUZZER_PIN, OUTPUT);
 }
