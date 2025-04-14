@@ -2,6 +2,7 @@
 #include <hardware/leds.h>
 #include <hardware/buzzer.h>
 #include <hardware/buttons.h>
+#include <game/game.h>
 
 void setup()
 {
@@ -10,19 +11,12 @@ void setup()
   initLeds();
   initBuzzer();
   initButtons();
+  startGame();
 }
 
 void loop()
 {
-  for (int i = 0; i < 4; i++)
-  {
-    if (readButton(i))
-    {
-      Serial.printf("Button %d pressed\n", i);
-      turnLedOn(i);
-      playTone(500 + i * 100, 500);
-    }
-    delay(500);
-    turnLedOff(i);
-  }
+  generateSequence();
+  playSequence();
+  delay(1000);
 }
