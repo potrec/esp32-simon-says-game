@@ -10,5 +10,6 @@
 
 void initButtons();
 bool readButton(int buttonPin);
+int readButton();
 
 #endif

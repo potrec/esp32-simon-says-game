@@ -24,8 +24,13 @@ const int SEQUENCE_ELEMENT_PAUSE_MS = 100;
 int *sequence = nullptr;
 int sequenceLength = 0;
 int sequenceCapacity = 0;
+int currentGuessIndex = 0;
+GameState gameState = GAME_NOT_STARTED;
+PlayingState playingState = PLAYING;
 
-bool buzzersEnabled = false;
+bool buzzersEnabled = true;
+bool gameStarted = false;
+bool isPlayerGuessing = false;
 
 void expandSequence()
 {
@@ -54,9 +59,8 @@ void startGame()
         delete[] sequence;
         sequence = nullptr;
     }
-
-    sequenceLength = 0;
-    sequenceCapacity = 0;
+    resetGame();
+    gameStarted = true;
 }
 
 void endGame()
@@ -66,13 +70,18 @@ void endGame()
         delete[] sequence;
         sequence = nullptr;
     }
-    sequenceLength = 0;
-    sequenceCapacity = 0;
+    for (int i = 0; i < NUM_BUTTONS; i++)
+    {
+        turnLedOff(i);
+    }
+    resetGame();
 }
 
 void resetGame()
 {
     sequenceLength = 0;
+    sequenceCapacity = 0;
+    currentGuessIndex = 0;
 }
 
 int *generateSequence()
@@ -86,20 +95,7 @@ int *generateSequence()
     sequence[sequenceLength] = randomNumber;
     sequenceLength++;
 
-    printSequence();
-
     return sequence;
-}
-
-void printSequence()
-{
-    Serial.print("\nCurrent sequence: ");
-    for (int i = 0; i < sequenceLength; i++)
-    {
-        Serial.print(sequence[i]);
-        Serial.print(" ");
-    }
-    Serial.println();
 }
 
 void playSequence()
@@ -115,4 +111,39 @@ void playSequence()
         turnLedOff(ledIndex);
         delay(SEQUENCE_ELEMENT_PAUSE_MS);
     }
+}
+
+void playFromSequence(int index)
+{
+    if (index < sequenceLength)
+    {
+        int ledIndex = sequence[index];
+        turnLedOn(ledIndex);
+        if (buzzersEnabled)
+            playTone(BASE_TONE_FREQUENCY + ledIndex * TONE_FREQUENCY_INCREMENT, TONE_DURATION_MS);
+        else
+            delay(TONE_DURATION_MS);
+        turnLedOff(ledIndex);
+        delay(SEQUENCE_ELEMENT_PAUSE_MS);
+    }
+}
+
+bool checkGuess(int guess)
+{
+    if (guess == sequence[currentGuessIndex])
+    {
+        currentGuessIndex++;
+        if (currentGuessIndex == sequenceLength)
+        {
+            currentGuessIndex = 0;
+            playingState = PLAYING;
+            return true;
+        }
+    }
+    else
+    {
+        endGame();
+        return false;
+    }
+    return true;
 }

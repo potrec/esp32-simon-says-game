@@ -24,3 +24,15 @@ bool readButton(int button)
         return false;
     }
 }
+
+int readButton()
+{
+    for (int i = 0; i < 4; i++)
+    {
+        if (readButton(i))
+        {
+            return i;
+        }
+    }
+    return -1;
+}
