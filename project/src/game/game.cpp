@@ -29,7 +29,6 @@ GameState gameState = GAME_NOT_STARTED;
 PlayingState playingState = PLAYING;
 
 bool buzzersEnabled = true;
-bool gameStarted = false;
 bool isPlayerGuessing = false;
 
 void expandSequence()
@@ -60,7 +59,6 @@ void startGame()
         sequence = nullptr;
     }
     resetGame();
-    gameStarted = true;
 }
 
 void endGame()

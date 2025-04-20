@@ -12,7 +12,7 @@ void initButtons()
     pinMode(BUTTON_4, INPUT_PULLUP);
 }
 
-bool readButton(int button)
+bool readButtonState(int button)
 {
     bool currentState = false;
 
@@ -56,7 +56,7 @@ int readButton()
 {
     for (int i = 0; i < 4; i++)
     {
-        if (readButton(i))
+        if (readButtonState(i))
         {
             return i;
         }
