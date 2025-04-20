@@ -9,6 +9,7 @@
 #define BUTTON_4 23
 
 void initButtons();
-bool readButton(int buttonPin);
+bool readButtonState(int buttonPin);
+int readButton();
 
 #endif

@@ -11,5 +11,6 @@
 void initLeds();
 void turnLedOn(int ledIndex);
 void turnLedOff(int ledIndex);
+void toggleLeds();
 
 #endif

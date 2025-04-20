@@ -49,3 +49,11 @@ void turnLedOff(int ledIndex)
         break;
     }
 }
+
+void toggleLeds()
+{
+    digitalWrite(LED_RED_PIN, !digitalRead(LED_RED_PIN));
+    digitalWrite(LED_GREEN_PIN, !digitalRead(LED_GREEN_PIN));
+    digitalWrite(LED_BLUE_PIN, !digitalRead(LED_BLUE_PIN));
+    digitalWrite(LED_YELLOW_PIN, !digitalRead(LED_YELLOW_PIN));
+}
