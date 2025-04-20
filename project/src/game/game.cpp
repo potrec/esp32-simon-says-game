@@ -132,6 +132,7 @@ bool checkGuess(int guess)
 {
     if (guess == sequence[currentGuessIndex])
     {
+        playFromSequence(currentGuessIndex);
         currentGuessIndex++;
         if (currentGuessIndex == sequenceLength)
         {

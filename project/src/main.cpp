@@ -42,11 +42,7 @@ void loop()
     {
       if (guess != -1)
       {
-        if (checkGuess(guess))
-        {
-          playFromSequence(guess);
-        }
-        else
+        if (!checkGuess(guess))
         {
           gameState = GAME_OVER;
           playingState = PLAYING;
