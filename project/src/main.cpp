@@ -16,10 +16,10 @@ void setup()
 
 void loop()
 {
-  int guess = readButton();
+  int buttonIndex = readButton();
   if (gameState == GAME_NOT_STARTED)
   {
-    if (guess != -1)
+    if (buttonIndex != -1)
     {
       startGame();
       gameState = GAME_IN_PROGRESS;
@@ -40,9 +40,9 @@ void loop()
     }
     else if (playingState == WAITING_FOR_PLAYER_GUESS)
     {
-      if (guess != -1)
+      if (buttonIndex != -1)
       {
-        if (!checkGuess(guess))
+        if (!checkGuess(buttonIndex))
         {
           gameState = GAME_OVER;
           playingState = PLAYING;
