@@ -66,6 +66,10 @@ The project is organized into three main components:
 - Visual feedback through LEDs
 - Audio feedback through buzzer
 
+## 3D Case for project
+
+![alt text](3DCase.png)
+
 ## License
 
 MIT License - Feel free to modify and distribute this project.
