@@ -66,9 +66,13 @@ The project is organized into three main components:
 - Visual feedback through LEDs
 - Audio feedback through buzzer
 
+## Bread board
+
+![Bread Board](BreadBoard.png)
+
 ## 3D Case for project
 
-![alt text](3DCase.png)
+![Bread Board](3DCase.png)
 
 ## License
 
@@ -76,4 +80,4 @@ MIT License - Feel free to modify and distribute this project.
 
 ## Credits
 
-Created by potrec
+Created by Maciej Potręć
